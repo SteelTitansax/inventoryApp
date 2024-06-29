@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Item Detail</h1>
+
+
+    {{error}}
+    <br/><br/><br/><br/><br/><br/>
+
+    
+    <div class="container">
+        <div class="row">
+        
+        <div class="col-2"></div>
+        
+        <div class="col-8">
+     
+            <form method = "post">
+            {% csrf_token %}
+
+                    <div class="card">
+                        <div class="form-group m-4">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" value={{item.name}} name="name">
+                        </div>
+                        
+                        <div class="form-group m-4">
+                            <label for="Location">Location</label>
+                            <input type="text" class="form-control" id="location" value={{item.location.id}} name="location">
+                        </div>
+    
+                        <div class="form-group m-4">
+                            <label for="Person">Person</label>
+                            <input type="text" class="form-control" id="person" value={{item.person.id}} name="person">
+                        </div>
+    
+                        <div class="form-group m-4">
+                            <label for="Comments">Comments</label>
+                            <input type="text" class="form-control" id="comments" value={{item.comments}} name="comments">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+            
+            </form>
+
+                <form action="{% url 'delete_item' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="card">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+                    
+        </div>
+        
+    
+        <div class="col-2"></div>
+  
+    </div>
+
+</div>
+
+{% endblock %}
+

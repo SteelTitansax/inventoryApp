@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Items Inventory</h1>
+
+<br/><br/><br/><br/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">    
+                <a  class= "btn btn-danger" href="/items/create">Create item</a>
+            </div>
+
+
+        </div>
+        <br/>
+
+        <div class="row border">
+            <div class="col-1 border">
+                <strong><h5 class="text-center">Name</h5></strong>
+            </div>
+            
+            <div class="col-1 border">
+                <strong><p class="text-center">Person</p></strong>                          
+            </div>
+            <div class="col-2 border">
+                <strong><p class="text-center">Location</p></strong>
+            </div>
+            
+            <div class="col-5 border">
+                <strong><p class="text-center">Comments</p></strong>
+            </div>
+            <div class="col-2 border">
+                <strong><p class="text-center">Date</p></strong>
+            </div>
+            <div class="col-1 border">
+                
+            </div>
+
+        {% for item in items %}
+        
+            
+            <div class="col-1 border">
+                <p class="text-center ml-2">{{item.name}}</p>
+            </div>
+            
+            <div class="col-1 border">
+                <p class="text-center">{{item.person.username}}</p>                          
+            </div>
+            <div class="col-2 border">
+                <p class="text-center">{{item.location}}</p>
+            </div>
+            <div class="col-5 border">
+                <p class="text-center">{{item.comments}}</p>
+            </div>
+            <div class="col-2 border">
+                <p class="text-center">{{item.date}}</p>
+            </div>
+            <div class="col-1 border">
+                <a  class= "btn btn-success" href="{{item.id}}">Details</a>
+            </div>
+ 
+        {% endfor %}
+
+
+    </div>        
+            
+</div>
+        
+
+
+
+{% endblock %}
+

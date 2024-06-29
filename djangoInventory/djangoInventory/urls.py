@@ -24,5 +24,13 @@ urlpatterns = [
     path('signup/',views.signup,name='signup'),
     path('logout/', views.signout, name='logout'),
     path('signin/',views.signin,name='signin'),
+    path('items/',views.items,name='items'),
+    path('items/create', views.create_item, name='create_item'),
+    path('items/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('items/<int:item_id>/delete', views.delete_item, name='delete_item'),
+    path('locations/',views.locations,name='locations'),
+    path('locations/create', views.create_location, name='create_location'),
+    path('locations/<int:location_id>/', views.location_detail, name='location_detail'),
+    path('locations/<int:location_id>/delete', views.delete_location, name='delete_location')
 
 ]

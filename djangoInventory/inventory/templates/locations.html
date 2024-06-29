@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Locations</h1>
+
+<br/><br/><br/><br/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">    
+                <a  class= "btn btn-danger" href="/locations/create">Crate location</a>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row border">
+            <div class="col-11 border">
+                <strong><h5 class="text-center">Location</h5></strong>
+            </div>
+        </div> 
+    
+        <div class="row border">
+
+            {% for location in locations %}
+        
+            
+            <div class="col-11 border">
+                <p class="text-center ml-2">{{location.location}}</p>
+            </div>
+
+            <div class="col-1 border">
+                <a  class= "btn btn-success" href="{{location.id}}">Details</a>
+            </div>
+ 
+            {% endfor %}
+
+        </div>                  
+
+    </div>        
+            
+</div>
+        
+
+
+
+{% endblock %}
+
