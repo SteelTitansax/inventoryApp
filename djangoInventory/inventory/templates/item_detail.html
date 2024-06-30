@@ -26,12 +26,23 @@
                         
                         <div class="form-group m-4">
                             <label for="Location">Location</label>
-                            <input type="text" class="form-control" id="location" value={{item.location.id}} name="location">
+                            <select class="form-control custom-select" id="location" name="location">
+                                <option selected disabled>Choose a location...</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.id }}">{{ location.location }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
+    
     
                         <div class="form-group m-4">
                             <label for="Person">Person</label>
-                            <input type="text" class="form-control" id="person" value={{item.person.id}} name="person">
+                            <select class="form-control custom-select" id="person" name="person">
+                                <option selected disabled>Choose a person...</option>
+                                {% for user in users %}
+                                    <option value="{{ user.id }}">{{ user.username }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
     
                         <div class="form-group m-4">

@@ -31,6 +31,7 @@ urlpatterns = [
     path('locations/',views.locations,name='locations'),
     path('locations/create', views.create_location, name='create_location'),
     path('locations/<int:location_id>/', views.location_detail, name='location_detail'),
-    path('locations/<int:location_id>/delete', views.delete_location, name='delete_location')
+    path('locations/<int:location_id>/delete', views.delete_location, name='delete_location'),
+    path('users/create', views.create_user, name='create_user')
 
 ]

@@ -73,17 +73,19 @@ def items(request):
 
 @login_required
 def create_item(request):
-
+    
     if request.method == 'GET':
+        locations = Location.objects.all()
+        users = User.objects.all()
 
         return render(request,'create_item.html',{
-            'form': ItemForm
+            'form': ItemForm,
+            'locations': locations,
+            'users' : users
         })
 
     else:
         try:
-            print(request.POST)
-
             form = ItemForm(request.POST)
             new_item = form.save(commit=False)
             new_item.user = request.user
@@ -98,9 +100,16 @@ def create_item(request):
 @login_required
 def item_detail(request,item_id):
     if request.method == 'GET':
+        locations = Location.objects.all()
+        users = User.objects.all()
         item = get_object_or_404(Item, pk=item_id)
         form = ItemForm(instance=item)
-        return render(request,'item_detail.html',{'item':item, 'form':form })
+        return render(request,'item_detail.html',{
+            'item':item, 
+            'form':form,
+            'locations': locations,
+            'users' : users 
+            })
     else:
         try:
 
@@ -128,7 +137,6 @@ def locations(request):
 def create_location(request):
 
     if request.method == 'GET':
-
         return render(request,'create_location.html',{
             'form': LocationForm
         })
@@ -171,3 +179,27 @@ def delete_location(request, location_id):
         location.delete()
         return redirect('locations')
 
+@login_required
+def create_user(request):
+
+    if request.method == 'GET':
+        return render(request, 'create_user.html', {
+            'form': UserCreationForm
+        })
+    else:
+        try:
+         if request.POST['password1'] == request.POST['password2']:
+            user = User.objects.create_user(username=request.POST['username'],password = request.POST['password1'])
+            user.save()
+            login(request,user)
+            return redirect('/items')
+        except IntegrityError:
+            return render(request, 'signup.html', {
+                'form': UserCreationForm,
+                'error': 'User already exists'
+            })
+
+    return render(request, 'signup.html', {
+        'form': UserCreationForm,
+        'error': 'Password do not match'
+    })
